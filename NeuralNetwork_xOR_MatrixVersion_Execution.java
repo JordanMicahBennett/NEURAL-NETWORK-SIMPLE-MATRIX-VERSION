@@ -22,9 +22,9 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     /*
      *      LAYER-I                              LAYER-II                                   LAYER-III
      *      
-     *      neuron-A        weight-from-A        neuron-B        weight-to-E-from-B         neuron-E  
-     *      neuron-C        weight-from-C        neuron-D        weight-to-E-from-D        
-     * 
+     *      neuron-A        weight-from-A        neuron-B        weight-to-G-from-B         neuron-G  
+     *      neuron-C        weight-from-C        neuron-D        weight-to-G-from-D        
+     *      neuron-E        weight-from-E        neuron-F        weight-to-G-from-F    
      */
     
     //problem space
