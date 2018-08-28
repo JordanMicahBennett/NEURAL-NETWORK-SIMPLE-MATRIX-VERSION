@@ -33,7 +33,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     //hyperparams
     static double alpha = 0.5; //momentum
     static double mse = 0.0;
-    static double eta = 0.2; //learning rates
+    static double eta = 0.2; //learning rate
     static double bias = 1.0; //helps model to generate good answers, beyond the origin (0,0) on cartesian plane.
 
             //consumes 8 outcomes per training step (each outcome represents a neuron's output value)
