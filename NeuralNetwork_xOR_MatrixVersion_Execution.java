@@ -32,7 +32,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     
     //hyperparams
     static double alpha = 0.5; //momentum
-    static double mse = 0.0;
+    static double mse = 0.0; //mean squared error
     static double eta = 0.2; //learning rate
     static double bias = 1.0; //helps model to generate good answers, beyond the origin (0,0) on cartesian plane.
 
@@ -42,8 +42,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     static Matrix LayerIII_Outcomes = new Matrix ( 1, 1 ); 
     
             //consumes 5 gradients per training step (each gradient represents a neuron's gradient value)
-    static Matrix LayerI_Gradients = new Matrix ( 3, 1 );
-    static Matrix LayerII_Gradients = new Matrix ( 3, 1 );
+    static Matrix LayerII_Gradients = new Matrix ( 2, 1 );
     static Matrix LayerIII_Gradients = new Matrix ( 1, 1 ); 
     
             //consumes 6 weights per training step
@@ -70,65 +69,64 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
             //System.out.println ( "__WEIGHT & GRADIENT SETUP__" );
             
             //System.out.println ( "\t\t__WEIGHT-SETUP" );
-	/*
+    /*
             LayerI_II_Weights_FromNeuronA.randomize ( );
             LayerI_II_Weights_FromNeuronC.randomize ( );                
             LayerI_II_Weights_FromNeuronE.randomize ( );
             LayerII_III_Weights_ToNeuronG.randomize ( );*/
-	    
-	    /*
-	    Weights are now initialized with good starting values, instead of random values.
+        
+        /*
+        Weights are now initialized with good starting values, instead of random values.
 
-		1) The model was ran, and good starting weights were observed.
+        1) The model was ran, and good starting weights were observed.
 
-		2) Starting weights are just the values of all the weights after initial problem space is consumed, that is the value of the weights after the first training case causes weights to obtain some random value between 0 and 1.
+        2) Starting weights are just the values of all the weights after initial problem space is consumed, that is the value of the weights after the first training case causes weights to obtain some random value between 0 and 1.
 
-		3) Good starting weights are those that crucially those that lead to good hypotheses.
-		
-		4) So I ran the model a few times, and took weights that produced good hypotheses/results, then I copied those good starting weights such that the model now starts with weights initialized as those values.
-	     */
-	    
+        3) Good starting weights are those that crucially those that lead to good hypotheses.
+        
+        4) So I ran the model a few times, and took weights that produced good hypotheses/results, then I copied those good starting weights such that the model now starts with weights initialized as those values.
+         */
+        
             //Instead of starting with random weights, I start instead with a set of good starting weights generated particularly when the model performs 
             //well.
-		LayerI_II_Weights_FromNeuronA.setColumnMatrix 
-		( 
-			new double [ ] 
-			{
-				0.5330270559252573,
-				0.3770145997674229
-			}
-		);
+        LayerI_II_Weights_FromNeuronA.setColumnMatrix 
+        ( 
+            new double [ ] 
+            {
+                0.5330270559252573,
+                0.3770145997674229
+            }
+        );
             
-            	LayerI_II_Weights_FromNeuronC.setColumnMatrix 
-		( 
-			new double [ ] 
-			{
-				0.384619730589013,
-				0.3183092287291529
-			}
-		);
+                LayerI_II_Weights_FromNeuronC.setColumnMatrix 
+        ( 
+            new double [ ] 
+            {
+                0.384619730589013,
+                0.3183092287291529
+            }
+        );
             
-		LayerI_II_Weights_FromNeuronE.setColumnMatrix 
-		( 
-			new double [ ] 
-			{
-				0.6014823191150609,
-				0.4511163515443918
-			}
-		);
+        LayerI_II_Weights_FromNeuronE.setColumnMatrix 
+        ( 
+            new double [ ] 
+            {
+                0.6014823191150609,
+                0.4511163515443918
+            }
+        );
             
-		LayerII_III_Weights_ToNeuronG.setColumnMatrix 
-		( 
-			new double [ ] 
-			{
-				0.4863195706057799,
-				0.808264485311589,
-				0.30919672657537034
-			}
-		);
+        LayerII_III_Weights_ToNeuronG.setColumnMatrix 
+        ( 
+            new double [ ] 
+            {
+                0.4863195706057799,
+                0.808264485311589,
+                0.30919672657537034
+            }
+        );
             
             //System.out.println ( "\t\t__GRADIENT-SETUP" );
-            LayerI_Gradients.setMatrix ( 0 );
             LayerII_Gradients.setMatrix ( 0 );
             LayerIII_Gradients.setMatrix ( 0 );
       
@@ -458,108 +456,107 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
         returnValue.add ( "1,1:0" );
         returnValue.add ( "1,0:1" );
         returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );   
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );        
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "0,1:1" );
-		returnValue.add ( "0,0:0" );
-		returnValue.add ( "1,1:0" );
-		returnValue.add ( "1,0:1" );   
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );   
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );        
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
+        returnValue.add ( "1,0:1" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "0,1:1" );
+        returnValue.add ( "0,0:0" );
+        returnValue.add ( "1,1:0" );
 		returnValue.add ( "0,0:0" );
 		returnValue.add ( "0,0:0" );
 		returnValue.add ( "1,1:0" );
@@ -1056,61 +1053,103 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
             //consume layer 2 weights and layer 3 gradients, by producing hidden gradients.
             //the term "layer 2" above is not to be mistaken for belonging only to layer 2, but to be taken to relate to come from neurons in layer 2.
             //System.out.println ( "\t\t__BUILD-BACKWARD-PASS/BUILD-HIDDEN-GRADIENT-OPERATION__" );
-            Matrix hiddenLayerSigma = LayerII_III_Weights_ToNeuronG.getProduct ( LayerIII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] ); //gradient. Focus is on element 0 of output gradients, because only one neuron exists conceptually in layer 3, that's not bias based (index 2).       
+            //Formula: hiddenLayerSigma * primeActivation(currentOutcome), where hiddenLayerSigma: thisWeight*nextGradient
+            //The following block builds each part of the formula above in terms of matrices, then combines them to form the input of the gradient
+            Matrix hiddenLayerSigma = new Matrix ( 2, 1 );
+            hiddenLayerSigma.setColumnMatrix 
+                    ( 
+                         new double [ ] 
+                         {
+                             LayerII_III_Weights_ToNeuronG.getProduct ( LayerIII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] ).getMatrix ( ) [ 0 ] [ 0 ],
+                             LayerII_III_Weights_ToNeuronG.getProduct ( LayerIII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] ).getMatrix ( ) [ 1 ] [ 0 ]
+                         }
+                    ); //gradient. Focus is on element 0 of output gradients, because only one neuron exists conceptually in layer 3, that's not bias based (index 2).       
  
-            Matrix productOfHiddenLayerSigmaAndPrimeActivation = LayerII_Outcomes.getPrimeActivation ( ).getProduct ( hiddenLayerSigma );
+            Matrix sigmaMultiples = new Matrix ( 2, 1 );
+            sigmaMultiples.setColumnMatrix 
+                    ( 
+                         new double [ ] 
+                         {
+                             LayerII_Outcomes.getPrimeActivation ( ).getMatrix ( ) [ 0 ] [ 0 ],
+                             LayerII_Outcomes.getPrimeActivation ( ).getMatrix ( ) [ 1 ] [ 0 ]
+                         }
+                    ); 
+                    
+            Matrix productOfHiddenLayerSigmaAndPrimeActivation = sigmaMultiples.getProduct ( hiddenLayerSigma );
 
             LayerII_Gradients.setMatrix ( productOfHiddenLayerSigmaAndPrimeActivation ); //update hidden/middle layer gradients ...
 
                     
-
             //consume layer 2 and 3 structures, by producing updated weights/delta weights   
             //System.out.println ( "\t\t__BUILD-BACKWARD-PASS/BUILD-WEIGHT-UPDATE-OPERATION__" );
                 //Layer 2 ops
                  //new delta weight --> ((eta*thisGradient*priorOutcome) + (alpha*oldDelta))
-                    double oldFirstWeightFromNeuronAtoB = LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondWeightFromNeuronAtoD = LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ];
-                    double oldFirstDeltaWeightFromNeuronAtoB = LayerI_II_DeltaWeights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondDeltaWeightFromNeuronAtoD = LayerI_II_DeltaWeights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ];
+                 //The block below builds "((eta*thisGradient*priorOutcome)" in matrix terms, then "(alpha*oldDelta))" in matrix terms, 
+                 //then summate them to form a separate matrix.
+                    //WRT neuron A and B/D
+                    Matrix oldWeightsFromAtoBandD = new Matrix ( 2, 1 );
+                    oldWeightsFromAtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ] } );
                     
-                    double newDeltaWeightForFirstDeltaWeightFromNeuronAToB = ( eta * LayerII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 0 ] [ 0 ] ) + ( alpha * oldFirstDeltaWeightFromNeuronAtoB );
-                    double newDeltaWeightForSecondDeltaWeightFromNeuronAToD = ( eta * LayerII_Gradients.getMatrix ( ) [ 1 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 0 ] [ 0 ] ) + ( alpha * oldSecondDeltaWeightFromNeuronAtoD );
+                    Matrix oldDeltaWeightsFromAtoBandD = new Matrix ( 2, 1 );
+                    oldDeltaWeightsFromAtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_DeltaWeights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_DeltaWeights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ] } );
                     
-                    double newFirstWeightFromNeuronAtoB = oldFirstWeightFromNeuronAtoB + newDeltaWeightForFirstDeltaWeightFromNeuronAToB;
-                    double newSecondWeightFromNeuronAtoD = oldSecondWeightFromNeuronAtoD + newDeltaWeightForSecondDeltaWeightFromNeuronAToD;
+                    Matrix newDeltaWeightsTermI_etaProduct_wrtNeuronA = LayerII_Gradients.getProduct ( LayerI_Outcomes.getMatrix ( ) [ 0 ] [ 0 ] ).getProduct ( eta ); //(eta*thisGradient*priorOutcomeFromLayerIIWrtNeuronA)
+                    //Only two gradients in hidden layer. This 2 sized matrix will multiply nicely by the 'newDeltaWeightTermII_alphaProduct' term.
                     
-                    LayerI_II_Weights_FromNeuronA.setColumnMatrix ( new double [ ] { newFirstWeightFromNeuronAtoB, newSecondWeightFromNeuronAtoD } );
-                    LayerI_II_DeltaWeights_FromNeuronA.setColumnMatrix ( new double [ ] { newDeltaWeightForFirstDeltaWeightFromNeuronAToB, newDeltaWeightForSecondDeltaWeightFromNeuronAToD } );
-            
-                    double oldFirstWeightFromNeuronCtoB = LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondWeightFromNeuronCtoD = LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ];
-                    double oldFirstDeltaWeightFromNeuronCtoB = LayerI_II_DeltaWeights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondDeltaWeightFromNeuronCtoD = LayerI_II_DeltaWeights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ];
+                    Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronA = oldDeltaWeightsFromAtoBandD.getProduct ( alpha ); //apha*oldDeltas
                     
-                    double newDeltaWeightForFirstDeltaWeightFromNeuronCToB = ( eta * LayerII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 1 ] [ 0 ] ) + ( alpha * oldFirstDeltaWeightFromNeuronCtoB );
-                    double newDeltaWeightForSecondDeltaWeightFromNeuronCToD = ( eta * LayerII_Gradients.getMatrix ( ) [ 1 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 1 ] [ 0 ] ) + ( alpha * oldSecondDeltaWeightFromNeuronCtoD );
+                    Matrix newDeltaWeights_WrtNeuronAandD = newDeltaWeightsTermI_etaProduct_wrtNeuronA.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronA );
+                    /////////////////////////
+                    //update weights
+                    LayerI_II_Weights_FromNeuronA.setMatrix ( LayerI_II_Weights_FromNeuronA.getSum ( newDeltaWeights_WrtNeuronAandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronA.setMatrix ( newDeltaWeights_WrtNeuronAandD );
                     
-                    double newFirstWeightFromNeuronCtoB = oldFirstWeightFromNeuronCtoB + newDeltaWeightForFirstDeltaWeightFromNeuronCToB;
-                    double newSecondWeightFromNeuronCtoD = oldSecondWeightFromNeuronCtoD + newDeltaWeightForSecondDeltaWeightFromNeuronCToD;
                     
-                    LayerI_II_Weights_FromNeuronC.setColumnMatrix ( new double [ ] { newFirstWeightFromNeuronCtoB, newSecondWeightFromNeuronCtoD } );
-                    LayerI_II_DeltaWeights_FromNeuronC.setColumnMatrix ( new double [ ] { newDeltaWeightForFirstDeltaWeightFromNeuronCToB, newDeltaWeightForSecondDeltaWeightFromNeuronCToD } );
                     
-                    double oldFirstWeightFromNeuronEtoB = LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondWeightFromNeuronEtoD = LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ];
-                    double oldFirstDeltaWeightFromNeuronEtoB = LayerI_II_DeltaWeights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ];
-                    double oldSecondDeltaWeightFromNeuronEtoD = LayerI_II_DeltaWeights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ];
                     
-                    double newDeltaWeightForFirstDeltaWeightFromNeuronEToB = ( eta * LayerII_Gradients.getMatrix ( ) [ 0 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 2 ] [ 0 ] ) + ( alpha * oldFirstDeltaWeightFromNeuronEtoB );
-                    double newDeltaWeightForSecondDeltaWeightFromNeuronEToD = ( eta * LayerII_Gradients.getMatrix ( ) [ 1 ] [ 0 ] * LayerI_Outcomes.getMatrix ( ) [ 2 ] [ 0 ] ) + ( alpha * oldSecondDeltaWeightFromNeuronEtoD );
                     
-                    double newFirstWeightFromNeuronEtoB = oldFirstWeightFromNeuronEtoB + newDeltaWeightForFirstDeltaWeightFromNeuronEToB;
-                    double newSecondWeightFromNeuronEtoD = oldSecondWeightFromNeuronEtoD + newDeltaWeightForSecondDeltaWeightFromNeuronEToD;
+                    //WRT neuron C and B/D
+                    Matrix oldWeightsFromCtoBandD = new Matrix ( 2, 1 );
+                    oldWeightsFromCtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ] } );
                     
-                    LayerI_II_Weights_FromNeuronE.setColumnMatrix ( new double [ ] { newFirstWeightFromNeuronEtoB, newSecondWeightFromNeuronEtoD } );
-                    LayerI_II_DeltaWeights_FromNeuronE.setColumnMatrix ( new double [ ] { newDeltaWeightForFirstDeltaWeightFromNeuronEToB, newDeltaWeightForSecondDeltaWeightFromNeuronEToD } );
+                    Matrix oldDeltaWeightsFromCtoBandD = new Matrix ( 2, 1 );
+                    oldDeltaWeightsFromCtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_DeltaWeights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_DeltaWeights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ] } );
                     
-
+                    Matrix newDeltaWeightsTermI_etaProduct_wrtNeuronC = LayerII_Gradients.getProduct ( LayerI_Outcomes.getMatrix ( ) [ 1 ] [ 0 ] ).getProduct ( eta ); //(eta*thisGradient*priorOutcomeFromLayerIIWrtNeuronC)
+                    //Only two gradients in hidden layer. This 2 sized matrix will multiply nicely by the 'newDeltaWeightTermII_alphaProduct' term.
+                    
+                    Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronC = oldDeltaWeightsFromCtoBandD.getProduct ( alpha ); //apha*oldDeltas
+                    
+                    Matrix newDeltaWeights_WrtNeuronCandD = newDeltaWeightsTermI_etaProduct_wrtNeuronC.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronC );
+                    /////////////////////////
+                    //update weights
+                    LayerI_II_Weights_FromNeuronC.setMatrix ( LayerI_II_Weights_FromNeuronC.getSum ( newDeltaWeights_WrtNeuronCandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronC.setMatrix ( newDeltaWeights_WrtNeuronCandD );
+                    
+                    
+                    
+                    
+                    
+                    //WRT neuron E and B/D
+                    Matrix oldWeightsFromEtoBandD = new Matrix ( 2, 1 );
+                    oldWeightsFromEtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ] } );
+                    
+                    Matrix oldDeltaWeightsFromEtoBandD = new Matrix ( 2, 1 );
+                    oldDeltaWeightsFromEtoBandD.setColumnMatrix ( new double [ ] { LayerI_II_DeltaWeights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_DeltaWeights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ] } );
+                    
+                    Matrix newDeltaWeightsTermI_etaProduct_wrtNeuronE = LayerII_Gradients.getProduct ( LayerI_Outcomes.getMatrix ( ) [ 2 ] [ 0 ] ).getProduct ( eta ); //(eta*thisGradient*priorOutcomeFromLayerIIWrtNeuronE)
+                    //Only two gradients in hidden layer. This 2 sized matrix will multiply nicely by the 'newDeltaWeightTermII_alphaProduct' term.
+                    
+                    Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronE = oldDeltaWeightsFromEtoBandD.getProduct ( alpha ); //apha*oldDeltas
+                    
+                    Matrix newDeltaWeights_WrtNeuronEandD = newDeltaWeightsTermI_etaProduct_wrtNeuronE.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronE );
+                    /////////////////////////
+                    //update weights
+                    LayerI_II_Weights_FromNeuronE.setMatrix ( LayerI_II_Weights_FromNeuronE.getSum ( newDeltaWeights_WrtNeuronEandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronE.setMatrix ( newDeltaWeights_WrtNeuronEandD );
+                    
+                    
+                    
                 //Layer 3 ops
                 Matrix oldDeltaWeightsToNeuronG = LayerII_III_DeltaWeights_ToNeuronG; //old delta weights to neuron g
                 Matrix oldWeightsToNeuronG = LayerII_III_Weights_ToNeuronG; //old weights to neuron g
