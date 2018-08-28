@@ -36,7 +36,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     static double eta = 0.2; //learning rate
     static double bias = 1.0; //helps model to generate good answers, beyond the origin (0,0) on cartesian plane.
 
-            //consumes 8 outcomes per training step (each outcome represents a neuron's output value)
+            //consumes 7 outcomes per training step (each outcome represents a neuron's output value)
     static Matrix LayerI_Outcomes = new Matrix ( 3, 1 ); //where last column entry represents bias neuron value
     static Matrix LayerII_Outcomes = new Matrix ( 3, 1 );
     static Matrix LayerIII_Outcomes = new Matrix ( 1, 1 ); 
