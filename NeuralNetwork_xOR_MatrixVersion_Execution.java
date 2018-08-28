@@ -41,7 +41,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     static Matrix LayerII_Outcomes = new Matrix ( 3, 1 );
     static Matrix LayerIII_Outcomes = new Matrix ( 1, 1 ); 
     
-            //consumes 5 gradients per training step (each gradient represents a neuron's gradient value)
+            //consumes 3 gradients per training step (each gradient represents a neuron's gradient value)
     static Matrix LayerII_Gradients = new Matrix ( 2, 1 );
     static Matrix LayerIII_Gradients = new Matrix ( 1, 1 ); 
     
