@@ -3,10 +3,10 @@
 # NEURAL-NETWORK-SIMPLE-MATRIX-VERSION
 A scratch written matrix based implementation of a basic artificial neural network. (This does the same thing as prior ones, but multiplications/additions/subtractions on Neuron/Synapse components are described instead in terms of matrices.)
 
-![Alt text](https://github.com/JordanMicahBennett/NEURAL-NETWORK-SIMPLE-MATRIX-VERSION/blob/master/screenshot.png "default page")
-
 
 This is a part of my [artificial neural network practice sequence](https://github.com/JordanMicahBennett/NEURAL_NETWORK_PRACTICE).
+
+![Alt text](https://github.com/JordanMicahBennett/NEURAL-NETWORK-SIMPLE-MATRIX-VERSION/blob/master/screenshot.png "default page")
 
 # The project no longer requires more than 1 run for correct results. 
 1. Weights are now initialized with good starting values, instead of random values.
