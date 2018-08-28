@@ -1706,7 +1706,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
             //System.out.println ( "\t\t__BUILD-FORWARD-PASS/BUILD-ACTIVATION-ON-SUM-OF-PRODUCTS--LAYER_3__" );
             LayerIII_Outcomes.setColumnMatrix ( new double [ ] { productsOfPriorWeightsAndPriorOutcomesToLayerIIINeuronG.getMatrix ( ) [ 2 ][ 0 ] } );  
             
-            //Use setColumnMatrix instead of setMatrix, to ensure that last entry/bias neuron value in LayerIII is not reset
+            //activate layer III value with tanh
             LayerIII_Outcomes.setColumnMatrix ( new double [ ] { LayerIII_Outcomes.getActivation ( ).getMatrix ( ) [ 0 ] [ 0 ] } ); //activation on each entry, where each entry is a sum         
     }
         
@@ -1749,7 +1749,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
             //System.out.println ( "\t\t__BUILD-FORWARD-PASS/BUILD-ACTIVATION-ON-SUM-OF-PRODUCTS--LAYER_3__" );
             LayerIII_Outcomes.setColumnMatrix ( new double [ ] { productsOfPriorWeightsAndPriorOutcomesToLayerIIINeuronG.getMatrix ( ) [ 2 ][ 0 ] } );  
             
-            //Use setColumnMatrix instead of setMatrix, to ensure that last entry/bias neuron value in LayerIII is not reset
+            //activate layer III value with tanh
             LayerIII_Outcomes.setColumnMatrix ( new double [ ] { LayerIII_Outcomes.getActivation ( ).getMatrix ( ) [ 0 ] [ 0 ] } ); //activation on each entry, where each entry is a sum         
     }
     
