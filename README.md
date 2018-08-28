@@ -6,8 +6,8 @@ A scratch written matrix based implementation of a basic artificial neural netwo
 This is a part of my [artificial neural network practice sequence](https://github.com/JordanMicahBennett/NEURAL_NETWORK_PRACTICE).
 
 # The project no longer requires more than 1 run for correct results. 
-# Weights are now initialized with good starting values, instead of random values.
-# So I ran the model a few times, and took weights that produced good hypotheses/results, then I copied those good starting weights such that the model now starts with weights initialized as those values.
+1. Weights are now initialized with good starting values, instead of random values.
+2. So I ran the model a few times, and took weights that produced good hypotheses/results, then I copied those good starting weights such that the model now starts with weights initialized as those values.
 
 
 # PROBLEM DESCRIPTION
