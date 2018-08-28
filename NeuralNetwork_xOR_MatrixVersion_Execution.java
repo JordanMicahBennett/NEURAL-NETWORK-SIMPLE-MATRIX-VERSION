@@ -1762,7 +1762,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     
             mse = errorSigma / 2;   //mean squared error
         
-            //consume layer 3 outcomes and gradients by producing a output (final layer) gradients
+            //consume layer 3 outcomes and gradients by producing an output (final layer) gradient
             //System.out.println ( "\t\t__BUILD-BACKWARD-PASS/BUILD-OUTCOME-GRADIENT-OPERATION__" );
             
             double deltaOnOutcomeNeuron = targetData - LayerIII_Outcomes.getMatrix ( ) [ 0 ] [ 0 ]; //delta, where layerIII represents output/final layer
