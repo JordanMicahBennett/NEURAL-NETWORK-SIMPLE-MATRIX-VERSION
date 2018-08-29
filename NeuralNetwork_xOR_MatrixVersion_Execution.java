@@ -1100,11 +1100,11 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
                     
                     Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronA = oldDeltaWeightsFromAtoBandD.getProduct ( alpha ); //apha*oldDeltas
                     
-                    Matrix newDeltaWeights_WrtNeuronAandD = newDeltaWeightsTermI_etaProduct_wrtNeuronA.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronA );
+                    Matrix newDeltaWeights_WrtNeuronsA_to_BandD = newDeltaWeightsTermI_etaProduct_wrtNeuronA.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronA );
                     /////////////////////////
                     //update weights
-                    LayerI_II_Weights_FromNeuronA.setMatrix ( LayerI_II_Weights_FromNeuronA.getSum ( newDeltaWeights_WrtNeuronAandD ) );
-                    LayerI_II_DeltaWeights_FromNeuronA.setMatrix ( newDeltaWeights_WrtNeuronAandD );
+                    LayerI_II_Weights_FromNeuronA.setMatrix ( LayerI_II_Weights_FromNeuronA.getSum ( newDeltaWeights_WrtNeuronsA_to_BandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronA.setMatrix ( newDeltaWeights_WrtNeuronsA_to_BandD );
                     
                     
                     
@@ -1122,11 +1122,11 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
                     
                     Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronC = oldDeltaWeightsFromCtoBandD.getProduct ( alpha ); //apha*oldDeltas
                     
-                    Matrix newDeltaWeights_WrtNeuronCandD = newDeltaWeightsTermI_etaProduct_wrtNeuronC.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronC );
+                    Matrix newDeltaWeights_WrtNeuronC_to_BandD = newDeltaWeightsTermI_etaProduct_wrtNeuronC.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronC );
                     /////////////////////////
                     //update weights
-                    LayerI_II_Weights_FromNeuronC.setMatrix ( LayerI_II_Weights_FromNeuronC.getSum ( newDeltaWeights_WrtNeuronCandD ) );
-                    LayerI_II_DeltaWeights_FromNeuronC.setMatrix ( newDeltaWeights_WrtNeuronCandD );
+                    LayerI_II_Weights_FromNeuronC.setMatrix ( LayerI_II_Weights_FromNeuronC.getSum ( newDeltaWeights_WrtNeuronC_to_BandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronC.setMatrix ( newDeltaWeights_WrtNeuronC_to_BandD );
                     
                     
                     
@@ -1144,11 +1144,11 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
                     
                     Matrix newDeltaWeightsTermII_alphaProduct_wrtNeuronE = oldDeltaWeightsFromEtoBandD.getProduct ( alpha ); //apha*oldDeltas
                     
-                    Matrix newDeltaWeights_WrtNeuronEandD = newDeltaWeightsTermI_etaProduct_wrtNeuronE.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronE );
+                    Matrix newDeltaWeights_WrtNeuronE_to_BandD = newDeltaWeightsTermI_etaProduct_wrtNeuronE.getSum ( newDeltaWeightsTermII_alphaProduct_wrtNeuronE );
                     /////////////////////////
                     //update weights
-                    LayerI_II_Weights_FromNeuronE.setMatrix ( LayerI_II_Weights_FromNeuronE.getSum ( newDeltaWeights_WrtNeuronEandD ) );
-                    LayerI_II_DeltaWeights_FromNeuronE.setMatrix ( newDeltaWeights_WrtNeuronEandD );
+                    LayerI_II_Weights_FromNeuronE.setMatrix ( LayerI_II_Weights_FromNeuronE.getSum ( newDeltaWeights_WrtNeuronE_to_BandD ) );
+                    LayerI_II_DeltaWeights_FromNeuronE.setMatrix ( newDeltaWeights_WrtNeuronE_to_BandD );
                     
                     
                     
