@@ -45,7 +45,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
     static Matrix LayerII_Gradients = new Matrix ( 2, 1 );
     static Matrix LayerIII_Gradients = new Matrix ( 1, 1 ); 
     
-            //consumes 6 weights per training step
+            //consumes 9 weights and 9 delta weights per training step
     static Matrix LayerI_II_Weights_FromNeuronA = new Matrix ( 2, 1 );
     static Matrix LayerI_II_Weights_FromNeuronC = new Matrix ( 2, 1 );
     static Matrix LayerI_II_Weights_FromNeuronE = new Matrix ( 2, 1 );
