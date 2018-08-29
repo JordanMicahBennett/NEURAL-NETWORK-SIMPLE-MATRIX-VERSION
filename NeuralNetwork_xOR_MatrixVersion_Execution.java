@@ -82,7 +82,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
 
         2) Starting weights are just the values of all the weights after initial problem space is consumed, that is the value of the weights after the first training case causes weights to obtain some random value between 0 and 1.
 
-        3) Good starting weights are those that crucially those that lead to good hypotheses.
+        3) Good starting weights are crucially those that lead to good hypotheses.
         
         4) So I ran the model a few times, and took weights that produced good hypotheses/results, then I copied those good starting weights such that the model now starts with weights initialized as those values.
          */
@@ -954,7 +954,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
         //zeroethWeightsFromLayer0 represents 0'th weights stemming from each neuron in layer 0, going to neuron B. 
         //The aim is to take each weight, multiply it by each relevant layer 0 outcome, then add each product to an accumulating sum.
         //The resulting 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB' matrix contains three entries, each representing an accumulation of prior products.
-        //The layer II's outcomes is then built in terms of the the last entry in 
+        //The layer II's outcomes is then built in terms of the last entry in 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB'.
             Matrix zeroethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
             zeroethWeightsFromLayer0.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ] } );
             Matrix productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB = zeroethWeightsFromLayer0.getAccumulatedDotProductWithoutSingularSum ( LayerI_Outcomes );
@@ -962,7 +962,8 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
         //onethWeightsFromLayer0 represents 1'th weights stemming from each neuron in layer 0, going to neuron D. 
         //The aim is to take each weight, multiply it by each relevant layer 0 outcome, then add each product to an accumulating sum.
         //The resulting 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD' matrix contains three entries, each representing an accumulation of prior products.
-            Matrix onethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
+        //The layer II's outcomes is then built in terms of the last entry in 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD'.          
+	    Matrix onethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
             onethWeightsFromLayer0.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ], LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ], LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ] } );
             Matrix productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD = onethWeightsFromLayer0.getAccumulatedDotProductWithoutSingularSum ( LayerI_Outcomes );
        
@@ -997,7 +998,7 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
         //zeroethWeightsFromLayer0 represents 0'th weights stemming from each neuron in layer 0, going to neuron B. 
         //The aim is to take each weight, multiply it by each relevant layer 0 outcome, then add each product to an accumulating sum.
         //The resulting 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB' matrix contains three entries, each representing an accumulation of prior products.
-        //The layer II's outcomes is then built in terms of the the last entry in 
+        //The layer II's outcomes is then built in terms of the the last entry in productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB.
             Matrix zeroethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
             zeroethWeightsFromLayer0.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 0 ] [ 0 ], LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 0 ] [ 0 ] } );
             Matrix productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronB = zeroethWeightsFromLayer0.getAccumulatedDotProductWithoutSingularSum ( LayerI_Outcomes );
@@ -1005,7 +1006,8 @@ public class NeuralNetwork_xOR_MatrixVersion_Execution
         //onethWeightsFromLayer0 represents 1'th weights stemming from each neuron in layer 0, going to neuron D. 
         //The aim is to take each weight, multiply it by each relevant layer 0 outcome, then add each product to an accumulating sum.
         //The resulting 'productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD' matrix contains three entries, each representing an accumulation of prior products.
-            Matrix onethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
+        //The layer II's outcomes is then built in terms of the the last entry in productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD.            
+	    Matrix onethWeightsFromLayer0 = new Matrix ( 3, 1 ); 
             onethWeightsFromLayer0.setColumnMatrix ( new double [ ] { LayerI_II_Weights_FromNeuronA.getMatrix ( ) [ 1 ] [ 0 ], LayerI_II_Weights_FromNeuronC.getMatrix ( ) [ 1 ] [ 0 ], LayerI_II_Weights_FromNeuronE.getMatrix ( ) [ 1 ] [ 0 ] } );
             Matrix productsOfPriorWeightsAndPriorOutcomesToLayerIINeuronD = onethWeightsFromLayer0.getAccumulatedDotProductWithoutSingularSum ( LayerI_Outcomes );
        
