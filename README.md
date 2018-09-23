@@ -1,4 +1,4 @@
-![Alt text](https://github.com/JordanMicahBennett/NEURAL-NETWORK-SIMPLE-MATRIX-VERSION/blob/master/notes.png "default page")
+![Alt text](https://github.com/JordanMicahBennett/NEURAL-NETWORK-SIMPLE-MATRIX-VERSION/blob/master/notes_v2.png "default page")
 
 # NEURAL-NETWORK-SIMPLE-MATRIX-VERSION
 A scratch written matrix based implementation of a basic artificial neural network. (This does the same thing as prior ones, but multiplications/additions/subtractions on Neuron/Synapse components are described instead in terms of matrices.)
